@@ -3,7 +3,7 @@ title: Devign数据集/mmpeg+QEMU
 date: 2024-04-23 19:12:24
 tags:
   - 数据集介绍
-categorys:
+categories:
   - 实验部分
 ---
 
