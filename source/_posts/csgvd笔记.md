@@ -37,14 +37,14 @@ $$tokensi = BPE − Tokenizer(si)。$$
 $$Ei = Embedding(tokensi)。$$
 最后使用BiLSTM来融合代码的本地语义信息
 $$
-\overrightarrow{h}_{i}\mathord{,}\overleftarrow{h_{i}}=BiLSTM(E_{i})
+\overrightarrow{h}_i{,}\overleftarrow{h_i}=BiLSTM(E_{i})
 $$
 
 $$
-x_i=Sum(\overrightarrow{h}_{i}\mathord{,}\overleftarrow{h_{i}})
+x_i=Sum(\overrightarrow{h}_i{,}\overleftarrow{h_i})
 $$
 
-其中$\overrightarrow{h}_{i},\overleftarrow{h_{i}}$是BiLSTM 的最终输出
+其中$\overrightarrow{h}_i{,}\overleftarrow{h_i}$是BiLSTM 的最终输出
 
 ### 第三步:残差图神经网络
 
