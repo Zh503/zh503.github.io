@@ -1,6 +1,7 @@
 ---
 title: csgvd笔记
 date: 2024-04-24 15:37:38
+mathjax: true
 categories:
   - 笔记
 tags:
