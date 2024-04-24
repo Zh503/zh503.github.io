@@ -30,25 +30,15 @@ tags:
 使用CodeBert中的PBE标记器进行标记,如公式(1)
 
 然后用CodeBert的词嵌入层权重初始化权重的词嵌入层来获得每个标记的向量表示$e_{i j}\ \in\ E_{i}\,=\,\{e_{i1},\,e_{i2},\,e_{i3},\,\cdot\,\cdot\,,\,e_{i n}\}$：
-$$
-Ei = Embedding(tokensi)。
-$$
+$$Ei = Embedding(tokensi)。$$
 其中CodeBERT使用的字节对编码（BPE）（Sennrich等人，2016）标记器也可以缓解OOV问题。
-$$
-tokensi = BPE − Tokenizer(si)。
-$$
+$$tokensi = BPE − Tokenizer(si)。$$
 
-$$
-Ei = Embedding(tokensi)。
-$$
+$$Ei = Embedding(tokensi)。$$
 最后使用BiLSTM来融合代码的本地语义信息
-$$
-\overrightarrow{h}_{i},\overleftarrow{h_{i}}\,=\,B i L S T M(E_{i})
-$$
+$$\overrightarrow{h}_{i},\overleftarrow{h_{i}}\,=\,B i L S T M(E_{i})$$
 
-$$
-x_i=Sum(\overrightarrow{h}_{i},\overleftarrow{h_{i}})
-$$
+$$x_i=Sum(\overrightarrow{h}_{i},\overleftarrow{h_{i}})$$
 
 其中$\overrightarrow{h}_{i},\overleftarrow{h_{i}}$是BiLSTM 的最终输出
 
@@ -57,13 +47,11 @@ $$
 有了CFG和代码的语义信息,就需要对信息进行融合.
 
 构建一个残差图神经网络来对语义信息和CFG控制流图进行融合
-$$
-H^{(l+1)} = GCN (H^{(l)}, A) + H^{(l)}\\
+$$H^{(l+1)} = GCN (H^{(l)}, A) + H^{(l)}\\
 Specially, in CSGVD,\\
 H^{(0)} = X\\
 H^{(1)} = GCN(H^{(0)}, A) \\
-\text {where in}\quad X = {x_1, x_2, x_3, . . . , x_n}\quad  \text{is  the node embedding matrix}.
-$$
+\text {where in}\quad X = {x_1, x_2, x_3, . . . , x_n}\quad  \text{is  the node embedding matrix}.$$
 ![image-20240422110131759](https://s2.loli.net/2024/04/24/gu48XHO9QKF6UMh.png)
 
 ### 第四步:图嵌入
@@ -73,35 +61,22 @@ $$
 ![image-20240422105752665](https://s2.loli.net/2024/04/22/CtRrHknFvw2KiNP.png)
 
 作者假设存在一个超节点vs，它在图的信息聚合中起着主导作用。计算每个节点与vs之间的注意力分数。最后，对每个节点进行加权聚合，作为图的向量表示。
-$$
-h_{m e a n}=\frac{\sum_{i=1}^{n}h_{i}}{n}
-$$
+$$h_{m e a n}=\frac{\sum_{i=1}^{n}h_{i}}{n}$$
 
-$$
-h_{fi}=h_{i}^{T}\cdot W
-$$
+$$h_{fi}=h_{i}^{T}\cdot W$$
 
-$$
-e_{i}=h_{fi}^{T}\cdot h_{m e a n}+h_{i}^{T}\cdot u
-$$
+$$e_{i}=h_{fi}^{T}\cdot h_{m e a n}+h_{i}^{T}\cdot u$$
 
-$$
-a_{i}=\frac{\exp{(e_{i})}}{\sum_{j=0}^{n}\exp{(e_{j})}}
-$$
+$$a_{i}=\frac{\exp{(e_{i})}}{\sum_{j=0}^{n}\exp{(e_{j})}}$$
 
-$$
-h_{g}=\sum_{i=0}^{n}a_{i}\cdot h_{fi}
-$$
+$$h_{g}=\sum_{i=0}^{n}a_{i}\cdot h_{fi}$$
 
 其中，W 是一个可学习的权重矩阵，u 是一个可学习的权重向量，hi 是节点 vi 的最终隐藏状态，而 hg 表示图的向量表示。特别地，我们选择所有节点的隐藏表示的平均 hmean 作为超级节点 vs 的隐藏表示。
 
 ### 第五步:分类器学习
 
 这一步就是个简单的分类,。构建一个两层MLP，如方程（12）–（13）所示，来预测一个给定函数是否存在漏洞。
-$$
-o = softmax(σ (U \cdot h_g ) \cdot V ) \\
-y = argmax(o)
-$$
+$$o = softmax(σ (U \cdot h_g ) \cdot V ) \\y = argmax(o)$$
 其中U和V是两个可学习的权重矩阵，σ(·)是一个激活函数，而y∈{0, 1}表示最终的预测结果。
 
 ### 数据集
