@@ -74,23 +74,23 @@ $$
 
 作者假设存在一个超节点vs，它在图的信息聚合中起着主导作用。计算每个节点与vs之间的注意力分数。最后，对每个节点进行加权聚合，作为图的向量表示。
 $$
-{{h_{m e a n}=\frac{\sum_{i=1}^{n}h_{i}}{n}}}
+h_{m e a n}=\frac{\sum_{i=1}^{n}h_{i}}{n}
 $$
 
 $$
-{{h_{fi}=h_{i}^{T}\cdot W}}
+h_{fi}=h_{i}^{T}\cdot W
 $$
 
 $$
-{{e_{i}=h_{fi}^{T}\cdot h_{m e a n}+h_{i}^{T}}\cdot u}
+e_{i}=h_{fi}^{T}\cdot h_{m e a n}+h_{i}^{T}\cdot u
 $$
 
 $$
-a_{i}={\frac{\exp{(e_{i})}}{\sum_{j=0}^{n}\exp{(e_{j})}}}
+a_{i}=\frac{\exp{(e_{i})}}{\sum_{j=0}^{n}\exp{(e_{j})}}
 $$
 
 $$
-{{h_{g}=\sum_{i=0}^{n}a_{i}\cdot h_{fi}}}
+h_{g}=\sum_{i=0}^{n}a_{i}\cdot h_{fi}
 $$
 
 其中，W 是一个可学习的权重矩阵，u 是一个可学习的权重向量，hi 是节点 vi 的最终隐藏状态，而 hg 表示图的向量表示。特别地，我们选择所有节点的隐藏表示的平均 hmean 作为超级节点 vs 的隐藏表示。
