@@ -1,7 +1,6 @@
 ---
 title: csgvd笔记
 date: 2024-04-24 15:37:38
-mathjax: true
 categories:
   - 笔记
 tags:
@@ -37,9 +36,13 @@ $$tokensi = BPE − Tokenizer(si)。$$
 
 $$Ei = Embedding(tokensi)。$$
 最后使用BiLSTM来融合代码的本地语义信息
-$$\overrightarrow{h}_{i},\overleftarrow{h_{i}}\,=\,BiLSTM(E_{i})$$
+$$
+\overrightarrow{h}_{i},\overleftarrow{h_{i}}\,=\,BiLSTM(E_{i})
+$$
 
-$$x_i=Sum(\overrightarrow{h}_{i},\overleftarrow{h_{i}})$$
+$$
+x_i=Sum(\overrightarrow{h}_{i},\overleftarrow{h_{i}})
+$$
 
 其中$\overrightarrow{h}_{i},\overleftarrow{h_{i}}$是BiLSTM 的最终输出
 
@@ -48,11 +51,11 @@ $$x_i=Sum(\overrightarrow{h}_{i},\overleftarrow{h_{i}})$$
 有了CFG和代码的语义信息,就需要对信息进行融合.
 
 构建一个残差图神经网络来对语义信息和CFG控制流图进行融合
-$$H^{(l+1)} = GCN (H^{(l)}, A) + H^{(l)}\\
-Specially, in CSGVD,\\
-H^{(0)} = X\\
-H^{(1)} = GCN(H^{(0)}, A) \\
-\text {where in}\quad X = {x_1, x_2, x_3, . . . , x_n}\quad  \text{is  the node embedding matrix}.$$
+$$H^{(l+1)} = GCN (H^{(l)}, A) + H^{(l)}$$
+$$Specially, in CSGVD,$$
+$$H^{(0)} = X$$
+$$H^{(1)} = GCN(H^{(0)}, A) $$
+$$\text {where in}\quad X = {x_1, x_2, x_3, . . . , x_n}\quad  \text{is  the node embedding matrix}.$$
 ![image-20240422110131759](https://s2.loli.net/2024/04/24/gu48XHO9QKF6UMh.png)
 
 ### 第四步:图嵌入
