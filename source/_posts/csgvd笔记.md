@@ -37,7 +37,7 @@ $$tokensi = BPE − Tokenizer(si)。$$
 $$Ei = Embedding(tokensi)。$$
 最后使用BiLSTM来融合代码的本地语义信息
 $$
-\overrightarrow{h}_i{,}\overleftarrow{h_i}=BiLSTM(E_{i})
+\overrightarrow{h}_i{,}\overleftarrow{h_i}=BiLSTM(E_i)
 $$
 
 $$
