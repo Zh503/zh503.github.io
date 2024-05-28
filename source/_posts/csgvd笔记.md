@@ -29,9 +29,13 @@ tags:
 
 使用CodeBert中的PBE标记器进行标记,如公式(1)
 
-然后用CodeBert的词嵌入层权重初始化权重的词嵌入层来获得每个标记的向量表示$e_{i j}\ \in\ E_{i}\,=\,\{e_{i1},\,e_{i2},\,e_{i3},\,\cdot\,\cdot\,,\,e_{i n}\}$：
+然后用CodeBert的词嵌入层权重初始化权重的词嵌入层来获得每个标记的向量表示
+
+$e_{i j}\ \in\ E_{i}\,=\,\{e_{i1},\,e_{i2},\,e_{i3},\,\cdot\,\cdot\,,\,e_{i n}\}$：
+
 $$Ei = Embedding(tokensi)。$$
 其中CodeBERT使用的字节对编码（BPE）（Sennrich等人，2016）标记器也可以缓解OOV问题。
+
 $$tokensi = BPE − Tokenizer(si)。$$
 
 $$Ei = Embedding(tokensi)。$$
